@@ -8,14 +8,14 @@ export const signup = async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
-        if(!name || !email || password) {
+        if(!name || !email || !password) {
             return res.status(400).json({
                 success: false,
                 msg: "all fields are required"
             });
         }
 
-        const existingUser = userModel.findOne({ email });
+        const existingUser = await userModel.findOne({ email });
         if(existingUser) {
             return res.status(400).json({
                 success: false,
@@ -25,7 +25,7 @@ export const signup = async (req, res) => {
 
         // password must be hashed in DB
         const hashedPassword = await bcrpt.hash(password, 10);
-        const newUser = userModel.create({
+        const newUser = await userModel.create({
             name: name,
             email: email,
             password: hashedPassword
