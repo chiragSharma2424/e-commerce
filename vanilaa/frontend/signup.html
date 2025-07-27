@@ -84,6 +84,7 @@
     <input type="text" placeholder="Email" id="ip2"/>
     <input type="password" placeholder="Password" id="ip3"/>
     <button id="btn">Sign-up</button>
+    <button onclick="getAllUsers()">Get All Users</button>
   </div>
 
   <script>
@@ -112,6 +113,20 @@
         })
     }
     button.addEventListener("click", userSignup);
+
+
+    function getAllUsers() {
+        fetch('http://localhost:3000/api/v1/user/data', {
+            method: "GET"
+        }).then((res) => {
+            console.log(res);
+            return res.json();
+        }).then((data) => {
+            console.log(data);
+        }).catch((err) => {
+            console.log(`error getting all users ${err}`);
+        })
+    }
   </script>
 </body>
 </html>
