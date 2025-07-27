@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      font-family: 'Poppins', sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #container {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 24px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      width: 380px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      transition: transform 0.3s ease;
+    }
+
+    #container:hover {
+      transform: translateY(-5px);
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 14px 18px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 6px rgba(102, 126, 234, 0.6);
+    }
+
+    input::placeholder {
+      color: #aaa;
+      font-style: italic;
+    }
+
+    button {
+      padding: 14px;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+      transition: background 0.4s ease, transform 0.2s ease;
+      font-weight: 500;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #5a67d8, #6b46c1);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <input type="text" placeholder="Name" id="ip1"/>
+    <input type="text" placeholder="Email" id="ip2"/>
+    <input type="password" placeholder="Password" id="ip3"/>
+    <button id="btn">Sign-up</button>
+  </div>
+
+  <script>
+    var button = document.getElementById('btn');
+
+    function userSignup() {
+        var name = document.getElementById('ip1').value;
+        var email = document.getElementById('ip2').value;
+        var password = document.getElementById('ip3').value;
+        var url = 'http://localhost:3000/api/v1/user/signup';
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password
+            })
+        }).then(() => {
+            console.log("successfully sended post request to", url);
+        }).catch((err) => {
+            console.log(`something went wrong ${err}`);
+        })
+    }
+    button.addEventListener("click", userSignup);
+  </script>
+</body>
+</html>
