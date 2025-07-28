@@ -1,4 +1,5 @@
 # 🛒 Multi-Ecommerce Projects (MERN + Vanilla JS)
+# mysql -u root -p -> this command will logs in into your sql workbench
 
 Welcome to the **Multi-Ecommerce Projects** repository!  
 This is a practice and portfolio project where I’m building **multiple e-commerce platforms** using both:
